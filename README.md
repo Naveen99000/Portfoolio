@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Poluparthi Naveen — Professional Data Analyst Portfolio
 
 A high-performance, executive portfolio website engineered for **Poluparthi Naveen** (Data Analyst | Power BI Developer | SQL & Python), built with **React**, **TypeScript**, **Tailwind CSS**, **Lucide Icons**, and **Recharts**.
@@ -152,3 +153,6 @@ Portfolio/
 ├── tsconfig.app.json                # Strict TypeScript configuration
 └── package.json                     # Vite, React 19, Tailwind, Recharts, Lucide
 ```
+=======
+# Portfoolio
+>>>>>>> dc600c828e238cf69d6d7cfcf8ef2c448b0de171
