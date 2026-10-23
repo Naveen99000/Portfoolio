@@ -11,10 +11,23 @@ import { profileData } from '../data/portfolioData';
 
 interface FooterProps {
   onOpenResumeModal: () => void;
+  onSelectTab?: (tabId: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenResumeModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenResumeModal, onSelectTab }) => {
   const currentYear = new Date().getFullYear();
+
+  const handleNavClick = (e: React.MouseEvent, tabId: string) => {
+    e.preventDefault();
+    if (onSelectTab) {
+      onSelectTab(tabId);
+    } else {
+      const element = document.getElementById(tabId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -94,22 +107,22 @@ export const Footer: React.FC<FooterProps> = ({ onOpenResumeModal }) => {
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <a href="#home" className="hover:text-cyan-400 transition-colors">Home</a>
+                <button onClick={(e) => handleNavClick(e, 'home')} className="hover:text-cyan-400 transition-colors text-left">Home</button>
               </li>
               <li>
-                <a href="#about" className="hover:text-cyan-400 transition-colors">About & Analytical Pillars</a>
+                <button onClick={(e) => handleNavClick(e, 'about')} className="hover:text-cyan-400 transition-colors text-left">About & Analytical Pillars</button>
               </li>
               <li>
-                <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills & Database Arsenal</a>
+                <button onClick={(e) => handleNavClick(e, 'skills')} className="hover:text-cyan-400 transition-colors text-left">Skills & Database Arsenal</button>
               </li>
               <li>
-                <a href="#projects" className="hover:text-cyan-400 transition-colors">Featured Projects & Case Studies</a>
+                <button onClick={(e) => handleNavClick(e, 'projects')} className="hover:text-cyan-400 transition-colors text-left">Featured Projects & Case Studies</button>
               </li>
               <li>
-                <a href="#training" className="hover:text-cyan-400 transition-colors">FLM Analytics Training & Education</a>
+                <button onClick={(e) => handleNavClick(e, 'training')} className="hover:text-cyan-400 transition-colors text-left">FLM Analytics Training & Education</button>
               </li>
               <li>
-                <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact Information</a>
+                <button onClick={(e) => handleNavClick(e, 'contact')} className="hover:text-cyan-400 transition-colors text-left">Contact Information</button>
               </li>
             </ul>
           </div>

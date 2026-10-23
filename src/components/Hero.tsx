@@ -25,22 +25,27 @@ import { profileData, heroSampleChartData } from '../data/portfolioData';
 
 interface HeroProps {
   onOpenResumeModal: () => void;
+  onSelectTab?: (tabId: string) => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenResumeModal }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenResumeModal, onSelectTab }) => {
   const [activeMetric, setActiveMetric] = useState<'revenue' | 'retention'>('revenue');
 
-  const scrollToProjects = (e: React.MouseEvent) => {
+  const handleExploreClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const element = document.getElementById('projects');
-    if (element) {
-      const navHeight = 72;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+    if (onSelectTab) {
+      onSelectTab('projects');
+    } else {
+      const element = document.getElementById('projects');
+      if (element) {
+        const navHeight = 72;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
@@ -112,7 +117,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResumeModal }) => {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
                 href="#projects"
-                onClick={scrollToProjects}
+                onClick={handleExploreClick}
                 id="hero-explore-btn"
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200"
               >
