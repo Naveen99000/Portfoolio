@@ -1,35 +1,24 @@
 import React from 'react';
 import { keyImpactMetrics } from '../data/portfolioData';
-import { Database, BarChart2, ShieldAlert, Clock } from 'lucide-react';
 
 export const StatsBanner: React.FC = () => {
-  const icons = [
-    <Database className="w-5 h-5 text-cyan-400" key="db" />,
-    <BarChart2 className="w-5 h-5 text-blue-400" key="bc" />,
-    <ShieldAlert className="w-5 h-5 text-emerald-400" key="sa" />,
-    <Clock className="w-5 h-5 text-sky-400" key="ck" />
-  ];
-
   return (
-    <section className="relative z-20 -mt-6 sm:-mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 bg-navy-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl backdrop-blur-xl">
+    <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 border-y border-slate-800/80 bg-slate-900/30 py-8">
         {keyImpactMetrics.map((item, index) => (
           <div 
             key={index}
-            className="flex flex-col text-left p-3 rounded-xl hover:bg-slate-800/40 transition-colors border border-transparent hover:border-slate-800"
+            className={`flex flex-col text-left px-2 sm:px-6 ${
+              index !== keyImpactMetrics.length - 1 ? 'lg:border-r lg:border-slate-800/80' : ''
+            }`}
           >
-            <div className="flex items-center gap-2 mb-2">
-              <div className="p-2 rounded-lg bg-navy-950 border border-slate-800">
-                {icons[index % icons.length]}
-              </div>
-            </div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-heading tabular-numbers">
               {item.value}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-cyan-300 mt-1">
+            <div className="text-xs font-semibold uppercase tracking-wider text-cyan-400 font-mono mt-1.5">
               {item.label}
             </div>
-            <div className="text-xs text-slate-400 mt-0.5 font-normal">
+            <div className="text-[13px] text-slate-400 mt-1 leading-snug">
               {item.subtext}
             </div>
           </div>

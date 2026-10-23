@@ -11,12 +11,7 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { 
   ArrowRight, 
-  ArrowLeft, 
-  BarChart2, 
-  Database, 
-  GraduationCap, 
-  Mail, 
-  User 
+  ArrowLeft 
 } from 'lucide-react';
 
 type SectionTab = 'home' | 'about' | 'skills' | 'projects' | 'training' | 'contact';
@@ -46,10 +41,8 @@ export const App: React.FC = () => {
     window.location.hash = validTab;
 
     if (viewMode === 'tabs') {
-      // In transition/tab mode: reset scroll to top immediately so the view appears cleanly
       window.scrollTo({ top: 0, behavior: 'instant' });
     } else {
-      // In continuous scroll mode: smoothly scroll to the section
       const element = document.getElementById(tabId);
       if (element) {
         const navHeight = 72;
@@ -79,7 +72,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-navy-950 text-slate-300 flex flex-col font-sans selection:bg-cyan-500/20 selection:text-cyan-300">
       {/* Sticky Navigation */}
       <Navbar 
         activeTab={activeTab}
@@ -103,101 +96,101 @@ export const App: React.FC = () => {
                 
                 <StatsBanner />
 
-                {/* Quick Navigation Cards Grid (Executive Directory) */}
-                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-                  <div className="text-left mb-6">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">
-                      Portfolio Explorer
+                {/* Architectural Directory Index */}
+                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+                  <div className="text-left mb-8 pb-4 border-b border-slate-800/80">
+                    <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">
+                      Index Directory
                     </span>
-                    <h3 className="text-2xl font-bold text-white tracking-tight mt-1">
-                      Navigate by Analytical Domain
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight font-heading mt-1">
+                      Navigate Portfolio by Analytical Focus
                     </h3>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
                     
-                    {/* Card 1: About */}
+                    {/* Item 1: About */}
                     <button
                       onClick={() => handleSelectTab('about')}
-                      className="p-5 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-850 border border-slate-800 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all text-left group"
+                      className="p-6 rounded-lg bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all text-left group"
                     >
-                      <div className="p-2.5 rounded-xl bg-navy-950 border border-slate-800 w-fit text-cyan-400 mb-3 group-hover:border-cyan-500/40 transition-colors">
-                        <User className="w-5 h-5" />
-                      </div>
-                      <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
-                        <span>About & Core Pillars</span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono text-cyan-400">01 / Profile</span>
                         <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <h4 className="text-base font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
+                        About & Delivery Philosophy
                       </h4>
-                      <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                        B.Tech IT graduate, FLM Analytics trainee, and 3-pillar data delivery philosophy.
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        Engineering background, FLM Analytics specialization, and 3-stage delivery pipeline.
                       </p>
                     </button>
 
-                    {/* Card 2: Skills */}
+                    {/* Item 2: Skills */}
                     <button
                       onClick={() => handleSelectTab('skills')}
-                      className="p-5 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-850 border border-slate-800 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all text-left group"
+                      className="p-6 rounded-lg bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all text-left group"
                     >
-                      <div className="p-2.5 rounded-xl bg-navy-950 border border-slate-800 w-fit text-blue-400 mb-3 group-hover:border-cyan-500/40 transition-colors">
-                        <Database className="w-5 h-5" />
-                      </div>
-                      <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
-                        <span>Technical Arsenal</span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono text-cyan-400">02 / Tooling</span>
                         <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <h4 className="text-base font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
+                        Technical Arsenal & Methods
                       </h4>
-                      <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
                         Power BI, DAX, PostgreSQL, MySQL CTEs, Python Pandas, and advanced Excel.
                       </p>
                     </button>
 
-                    {/* Card 3: Projects */}
+                    {/* Item 3: Projects */}
                     <button
                       onClick={() => handleSelectTab('projects')}
-                      className="p-5 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-850 border border-slate-800 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all text-left group"
+                      className="p-6 rounded-lg bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all text-left group"
                     >
-                      <div className="p-2.5 rounded-xl bg-navy-950 border border-slate-800 w-fit text-emerald-400 mb-3 group-hover:border-cyan-500/40 transition-colors">
-                        <BarChart2 className="w-5 h-5" />
-                      </div>
-                      <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
-                        <span>Featured Projects</span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono text-cyan-400">03 / Case Studies</span>
                         <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <h4 className="text-base font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
+                        Production Analytics Projects
                       </h4>
-                      <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                        E-commerce KPI dashboard (260k+ orders) & Operational anomaly detection (37k+ logs).
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        E-commerce KPI dashboard (260k+ orders) & Driver engagement analysis (37k+ trips).
                       </p>
                     </button>
 
-                    {/* Card 4: Training */}
+                    {/* Item 4: Training */}
                     <button
                       onClick={() => handleSelectTab('training')}
-                      className="p-5 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-850 border border-slate-800 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all text-left group"
+                      className="p-6 rounded-lg bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all text-left group"
                     >
-                      <div className="p-2.5 rounded-xl bg-navy-950 border border-slate-800 w-fit text-purple-400 mb-3 group-hover:border-cyan-500/40 transition-colors">
-                        <GraduationCap className="w-5 h-5" />
-                      </div>
-                      <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
-                        <span>Training & Education</span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono text-cyan-400">04 / Credentials</span>
                         <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <h4 className="text-base font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
+                        Training & Education
                       </h4>
-                      <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
                         FLM Analytics Program (Jan–Jun 2025) and B.Tech in IT (CGPA: 7.87).
                       </p>
                     </button>
 
-                    {/* Card 5: Contact */}
+                    {/* Item 5: Contact */}
                     <button
                       onClick={() => handleSelectTab('contact')}
-                      className="p-5 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-850 border border-slate-800 hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all text-left group sm:col-span-2 lg:col-span-2"
+                      className="p-6 rounded-lg bg-slate-900/40 border border-slate-800 hover:border-slate-700 transition-all text-left group sm:col-span-2 lg:col-span-2"
                     >
-                      <div className="p-2.5 rounded-xl bg-navy-950 border border-slate-800 w-fit text-cyan-400 mb-3 group-hover:border-cyan-500/40 transition-colors">
-                        <Mail className="w-5 h-5" />
-                      </div>
-                      <h4 className="text-base font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
-                        <span>Discuss Opportunities (Contact)</span>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono text-cyan-400">05 / Inquiries</span>
                         <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <h4 className="text-base font-bold text-white font-heading group-hover:text-cyan-300 transition-colors">
+                        Recruiter & Opportunity Channel
                       </h4>
-                      <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
-                        Based in Hyderabad, open to Pune & remote roles. Email, phone, LinkedIn & direct composer.
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        Direct channels, mail client composer, and availability for Hyderabad & Pune analyst positions.
                       </p>
                     </button>
 
@@ -207,116 +200,115 @@ export const App: React.FC = () => {
             )}
 
             {activeTab === 'about' && (
-              <div className="pt-20">
+              <div className="pt-16">
                 <About />
-                {/* Section Transition Navigation Footer */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between border-t border-slate-800/80 pt-6">
                   <button
                     onClick={() => handleSelectTab('home')}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-all"
                   >
-                    <ArrowLeft className="w-4 h-4 text-cyan-400" />
-                    <span>Back to Home</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Return to Overview</span>
                   </button>
 
                   <button
                     onClick={() => handleSelectTab('skills')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-semibold shadow-md shadow-cyan-500/20 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-100 hover:bg-white text-navy-950 text-xs font-semibold tracking-wide transition-all shadow-sm"
                   >
-                    <span>Next: Technical Skills</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>Next: Technical Arsenal</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
             )}
 
             {activeTab === 'skills' && (
-              <div className="pt-20">
+              <div className="pt-16">
                 <Skills />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between border-t border-slate-800/80 pt-6">
                   <button
                     onClick={() => handleSelectTab('about')}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-all"
                   >
-                    <ArrowLeft className="w-4 h-4 text-cyan-400" />
-                    <span>Back: About Me</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Back: Profile & Ethos</span>
                   </button>
 
                   <button
                     onClick={() => handleSelectTab('projects')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-semibold shadow-md shadow-cyan-500/20 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-100 hover:bg-white text-navy-950 text-xs font-semibold tracking-wide transition-all shadow-sm"
                   >
-                    <span>Next: Featured Projects</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>Next: Production Projects</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
             )}
 
             {activeTab === 'projects' && (
-              <div className="pt-20">
+              <div className="pt-16">
                 <Projects />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between border-t border-slate-800/80 pt-6">
                   <button
                     onClick={() => handleSelectTab('skills')}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-all"
                   >
-                    <ArrowLeft className="w-4 h-4 text-cyan-400" />
-                    <span>Back: Skills</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Back: Tooling</span>
                   </button>
 
                   <button
                     onClick={() => handleSelectTab('training')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-semibold shadow-md shadow-cyan-500/20 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-100 hover:bg-white text-navy-950 text-xs font-semibold tracking-wide transition-all shadow-sm"
                   >
-                    <span>Next: Training & Education</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>Next: Credentials & Timeline</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
             )}
 
             {activeTab === 'training' && (
-              <div className="pt-20">
+              <div className="pt-16">
                 <TrainingEducation />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between border-t border-slate-800/80 pt-6">
                   <button
                     onClick={() => handleSelectTab('projects')}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-all"
                   >
-                    <ArrowLeft className="w-4 h-4 text-cyan-400" />
-                    <span>Back: Projects</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Back: Case Studies</span>
                   </button>
 
                   <button
                     onClick={() => handleSelectTab('contact')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-semibold shadow-md shadow-cyan-500/20 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-100 hover:bg-white text-navy-950 text-xs font-semibold tracking-wide transition-all shadow-sm"
                   >
-                    <span>Next: Contact Me</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>Next: Direct Communication</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
             )}
 
             {activeTab === 'contact' && (
-              <div className="pt-20">
+              <div className="pt-16">
                 <Contact />
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex items-center justify-between border-t border-slate-800/80 pt-6">
                   <button
                     onClick={() => handleSelectTab('training')}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-navy-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-md bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-mono transition-all"
                   >
-                    <ArrowLeft className="w-4 h-4 text-cyan-400" />
-                    <span>Back: Training</span>
+                    <ArrowLeft className="w-3.5 h-3.5" />
+                    <span>Back: Credentials</span>
                   </button>
 
                   <button
                     onClick={() => handleSelectTab('home')}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-semibold shadow-md shadow-cyan-500/20 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-100 hover:bg-white text-navy-950 text-xs font-semibold tracking-wide transition-all shadow-sm"
                   >
-                    <span>Return to Home</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <span>Return to Overview</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>

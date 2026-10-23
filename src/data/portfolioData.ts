@@ -25,7 +25,7 @@ export const keyImpactMetrics = [
   {
     value: "297,000+",
     label: "Total Records Analyzed",
-    subtext: "Across e-commerce & operational datasets"
+    subtext: "260k+ e-commerce & 37k+ trip records"
   },
   {
     value: "8+",
@@ -34,8 +34,8 @@ export const keyImpactMetrics = [
   },
   {
     value: "90%+",
-    label: "Anomaly Root Cause Isolated",
-    subtext: "Disproved system error hypothesis"
+    label: "Passenger-Driven Cancellations",
+    subtext: "Challenged supply-side assumptions"
   },
   {
     value: "~40%",
@@ -209,70 +209,71 @@ RETURN
     chartType: "revenue-cohort"
   },
   {
-    id: "operational-anomaly-analytics",
-    title: "Operational Performance Analytics & Anomaly Detection",
-    subtitle: "Insight-Driven Root Cause Problem Solving & Anomaly Diagnosis",
-    category: "Operational Intelligence & Root Cause Analysis",
-    technologies: ["MySQL", "Power BI", "Python", "Excel"],
+    id: "driver-engagement-retention",
+    title: "Driver Engagement & Retention Analysis",
+    subtitle: "Mobility Analytics, Cancellation Root Cause & Supply-Demand Dynamics",
+    category: "Mobility Analytics & Driver Engagement",
+    technologies: ["MySQL", "Excel", "Power BI", "EDA", "Python"],
     metrics: [
-      { label: "Operational Logs", value: "37,000+" },
-      { label: "Root Cause Isolated", value: "90%+" },
-      { label: "Hypothesis Shift", value: "System -> User" },
-      { label: "Monitoring Dashboards", value: "Real-time" }
+      { label: "Trip & Driver Records", value: "37,000+" },
+      { label: "Passenger-Driven", value: "90%+" },
+      { label: "Primary Discovery", value: "Not Supply-Side" },
+      { label: "Deliverables", value: "Power BI & Excel" }
     ],
-    summary: "Investigated 37,000+ operational records to diagnose widespread cancellation spikes. Through SQL trend segmentation and root-cause analysis, uncovered that 90%+ of cancellations were user-initiated rather than technical system outages, fundamentally re-orienting leadership's remediation priorities.",
-    businessProblem: "Stakeholders suspected technical server outages and processing latency as the root cause behind a surge in workflow cancellations. Engineering teams were preparing extensive infrastructure overhauls based on inaccurate categorization in the operational logs.",
+    summary: "Analyzed 37,000+ trip and driver records using MySQL and Python to understand cancellation patterns, engagement trends, and retention gaps across user segments. Discovered that 90%+ of cancellations were passenger-driven — not supply-side — challenging team assumptions and directly influencing the retention strategy.",
+    businessProblem: "Stakeholders operated under the hypothesis that ride cancellations were primarily driven by supply shortages (driver unresponsiveness or lack of vehicle availability), triggering costly driver acquisition campaigns. Leadership needed empirical validation to identify the true root causes of trip drop-offs.",
     dataPreparation: [
-      "Extracted 37,000+ operational status events and timestamped workflow records from MySQL database.",
-      "Conducted data audit in Python (Pandas) to analyze event log consistency, identifying significant ambiguities in status reason tagging.",
-      "Built SQL segmentation scripts to cross-reference cancellation event timestamps against server telemetry and user interaction session logs.",
-      "Developed automated data validation checks to prevent future error misclassification at the point of ingestion."
+      "Extracted and analyzed 37,000+ trip and driver records from MySQL database.",
+      "Engineered Python (Pandas) wrangling routines to audit timestamp intervals, booking sequences, and cancellation triggers.",
+      "Categorized cancellation attribution codes and driver idle durations across geographic zones.",
+      "Conducted data quality validation to ensure accurate tagging of passenger vs supply-initiated events."
     ],
     analyticalApproach: [
-      "Conducted structured Root Cause Analysis (5-Whys framework backed by quantitative frequency distributions).",
-      "Segmented cancellation timestamps by user session duration, device type, and checkout step completion status.",
-      "Discovered that over 90% of logged cancellations occurred during user-prompted navigation changes and voluntary exits, not system-level timeouts.",
-      "Constructed Power BI tracking dashboards with real-time KPI alerts for operational anomalies."
+      "Executed comprehensive Exploratory Data Analysis (EDA) on cancellation timing, ETA variance, and driver dispatch radius.",
+      "Isolated cancellation drivers: proved empirically that 90%+ of cancellations were passenger-driven rather than supply-side shortages.",
+      "Segmented driver activity trends and retention cohorts to uncover engagement friction points.",
+      "Synthesized findings into executive Power BI monitoring dashboards and structured Excel reporting models."
     ],
     keyKPIs: [
-      "User-Initiated vs System-Initiated Cancellation Ratio (%)",
-      "Time-to-Cancellation from Workflow Step Initiation",
-      "Operational Anomaly Frequency by Hour & Day",
-      "Data Classification Error Rate",
-      "Post-Remediation Workflow Completion Rate"
+      "Passenger-Driven vs Supply-Side Cancellation Rate (%)",
+      "Driver Ride Acceptance & Fulfillment Ratio",
+      "Average Passenger Wait Time Prior to Cancellation",
+      "Driver Engagement & Retention Cohort Curve",
+      "Fulfillment Efficiency across High-Demand Hours"
     ],
     businessValue: [
-      "Prevented misallocated engineering expenditure by disproving the technical outage hypothesis with concrete empirical data.",
-      "Fundamentally reshaped the remediation strategy toward UI/UX friction points, user confirmation prompts, and checkout clarity.",
-      "Delivered real-time Power BI monitoring dashboards and automated Excel alerts enabling operational managers to monitor genuine system health."
+      "Challenged existing organizational assumptions by proving 90%+ of cancellations were passenger-driven, preventing misallocated supply recruitment spend.",
+      "Directly influenced the team's retention strategy to focus on passenger ETA expectations, upfront communication, and booking experience friction.",
+      "Presented findings through structured Excel reports and Power BI dashboards, translating data insights into clear recommendations for business stakeholders."
     ],
-    sqlSnippet: `-- Root Cause Segmentation of Cancellation Logs
+    sqlSnippet: `-- Driver Engagement & Cancellation Attribution Analysis
 SELECT 
-    status_category,
-    cancellation_source,
-    COUNT(*) AS total_events,
-    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(), 2) AS percentage_share,
-    ROUND(AVG(session_duration_seconds), 1) AS avg_session_duration_sec,
-    SUM(CASE WHEN error_code IS NULL OR error_code = 'SUCCESS_USER_CANCEL' THEN 1 ELSE 0 END) AS verified_user_initiated
-FROM operational_event_logs
-WHERE event_status = 'CANCELLED'
-GROUP BY status_category, cancellation_source
-ORDER BY total_events DESC;`,
-    daxSnippet: `// DAX Measure: User vs System Cancellation Ratio
-User Cancellation % = 
-VAR UserCancellations = 
+    cancellation_source, -- 'Passenger-Driven' vs 'Supply-Side'
+    service_zone,
+    COUNT(trip_id) AS total_cancelled_trips,
+    ROUND(COUNT(trip_id) * 100.0 / SUM(COUNT(trip_id)) OVER(), 1) AS cancellation_share_pct,
+    ROUND(AVG(driver_arrival_eta_mins), 1) AS avg_eta_mins,
+    ROUND(AVG(passenger_wait_time_sec) / 60.0, 1) AS avg_wait_mins,
+    COUNT(DISTINCT driver_id) AS impacted_drivers
+FROM trip_and_driver_records
+WHERE trip_status = 'CANCELLED'
+GROUP BY cancellation_source, service_zone
+ORDER BY total_cancelled_trips DESC;`,
+    daxSnippet: `// DAX Measure: Passenger-Driven Cancellation Rate
+Passenger Cancellation Rate % = 
+VAR PassengerCancels = 
     CALCULATE(
-        COUNTROWS('OperationalLogs'),
-        'OperationalLogs'[CancellationType] = "User-Initiated"
+        COUNTROWS('TripRecords'),
+        'TripRecords'[CancellationSource] = "Passenger-Driven"
     )
-VAR TotalCancellations = 
+VAR TotalCancels = 
     CALCULATE(
-        COUNTROWS('OperationalLogs'),
-        'OperationalLogs'[Status] = "Cancelled"
+        COUNTROWS('TripRecords'),
+        'TripRecords'[TripStatus] = "CANCELLED"
     )
 RETURN
-    DIVIDE(UserCancellations, TotalCancellations, 0)`,
-    githubUrl: "https://github.com/Naveen99000/operational-anomaly-analytics",
+    DIVIDE(PassengerCancels, TotalCancels, 0)`,
+    githubUrl: "https://github.com/Naveen99000/driver-engagement-retention-analysis",
     chartType: "anomaly-breakdown"
   }
 ];
@@ -346,8 +347,8 @@ export const project1RfmData = [
 ];
 
 export const project2AnomalyData = [
-  { category: "User-Initiated (Misclassified)", count: 33670, percentage: 91.0, color: "#06B6D4" },
-  { category: "True Technical / System Error", count: 1850, percentage: 5.0, color: "#EF4444" },
-  { category: "Network Timeout / Latency", count: 1110, percentage: 3.0, color: "#F59E0B" },
-  { category: "Third-Party API Disconnect", count: 370, percentage: 1.0, color: "#8B5CF6" }
+  { category: "Passenger-Driven (90%+)", count: 33500, percentage: 90.5, color: "#06B6D4" },
+  { category: "Driver-Initiated / Rejected", count: 2180, percentage: 5.9, color: "#F59E0B" },
+  { category: "Supply Timeout (No Drivers)", count: 960, percentage: 2.6, color: "#EF4444" },
+  { category: "Technical Disconnect", count: 360, percentage: 1.0, color: "#8B5CF6" }
 ];

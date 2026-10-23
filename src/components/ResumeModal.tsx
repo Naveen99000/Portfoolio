@@ -215,17 +215,16 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs mb-1">
                   <span className="font-bold text-white text-sm">
-                    Operational Analytics & Insight-Driven Problem Solving
+                    Driver Engagement & Retention Analysis
                   </span>
                   <span className="text-cyan-300 font-mono">
-                    SQL | Power BI | Excel
+                    MySQL | Excel | Power BI | EDA
                   </span>
                 </div>
                 <ul className="list-disc list-outside ml-4 text-xs text-slate-300 space-y-1">
-                  <li>Processed and analyzed 37,000+ operational records to design a custom analytical solution diagnosing cancellation patterns — discovered 90%+ were user-initiated (misclassified as operational), fundamentally reshaping the recommended remediation strategy.</li>
-                  <li>Built automated Power BI dashboards and Excel reports for real-time KPI monitoring, enabling stakeholders to track performance and act on live insights.</li>
-                  <li>Applied structured root cause analysis and quantitative problem-solving to translate complex data patterns into clear, actionable recommendations for decision-makers.</li>
-                  <li>Created presentation-ready outputs documenting methodology, findings, and recommendations for both technical and non-technical stakeholder audiences.</li>
+                  <li>Analyzed 37,000+ trip and driver records using MySQL and Python to understand cancellation patterns, engagement trends, and retention gaps across user segments.</li>
+                  <li>Discovered that 90%+ of cancellations were passenger-driven — not supply-side — a finding that challenged existing assumptions and directly influenced the team’s retention strategy.</li>
+                  <li>Presented findings through structured Excel reports and Power BI dashboards, translating data insights into clear recommendations for business stakeholders.</li>
                 </ul>
               </div>
 

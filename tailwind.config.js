@@ -31,15 +31,16 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
+        heading: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'Fira Code', 'Consolas', 'monospace'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.25)',
-        'glow-blue': '0 0 25px -5px rgba(56, 189, 248, 0.25)',
-        'card': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+        'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4)',
+        'panel': '0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+        'accent': '0 0 20px -5px rgba(6, 182, 212, 0.15)',
       },
       backgroundImage: {
-        'grid-pattern': "radial-gradient(circle at 1px 1px, rgba(56, 189, 248, 0.08) 1px, transparent 0)",
+        'subtle-grid': "radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0)",
       }
     },
   },

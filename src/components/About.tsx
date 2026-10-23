@@ -3,147 +3,155 @@ import {
   Database, 
   BarChart, 
   Lightbulb, 
-  GraduationCap, 
-  MapPin, 
-  Award, 
-  CheckCircle,
-  FileSpreadsheet
+  FileCheck
 } from 'lucide-react';
 import { profileData } from '../data/portfolioData';
 
 export const About: React.FC = () => {
   const pillars = [
     {
-      icon: <Database className="w-5 h-5 text-cyan-400" />,
+      num: "01",
+      icon: <Database className="w-4 h-4 text-cyan-400" />,
       title: "Data Extraction & Pipeline Engineering",
-      description: "Extracting, cleaning, and transforming multi-source datasets with PostgreSQL, MySQL, and Python (Pandas). Using CTEs and window functions to prep clean tables for analysis."
+      description: "Extracting, cleansing, and transforming raw enterprise datasets with PostgreSQL, MySQL, and Python Pandas. Engineering CTEs and window calculations to prepare reliable, validated models."
     },
     {
-      icon: <BarChart className="w-5 h-5 text-blue-400" />,
-      title: "KPI Modeling & Dashboard Development",
-      description: "Architecting Power BI star schemas and writing dynamic DAX measures. Designing intuitive, executive-ready dashboards with automated refreshes and drill-through analysis."
+      num: "02",
+      icon: <BarChart className="w-4 h-4 text-cyan-400" />,
+      title: "KPI Modeling & Dashboard Architecture",
+      description: "Structuring Power BI star schemas and authoring dynamic DAX measures. Designing intuitive executive views with automated refreshes, cross-filtering, and granular drill-through paths."
     },
     {
-      icon: <Lightbulb className="w-5 h-5 text-emerald-400" />,
-      title: "Insight Storytelling & Decision Support",
-      description: "Conducting root-cause investigations, cohort retention analysis, and RFM segmentation to answer specific business questions and guide operational strategies."
+      num: "03",
+      icon: <Lightbulb className="w-4 h-4 text-cyan-400" />,
+      title: "Root Cause Discovery & Storytelling",
+      description: "Applying exploratory analysis, cohort retention, and RFM segmentation to test business hypotheses, isolate operational anomalies, and present actionable stakeholder recommendations."
     }
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background Subtle Accent */}
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="about" className="py-20 relative text-left">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-left max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/30 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            About Me
+        <div className="max-w-3xl mb-14">
+          <div className="text-xs font-mono uppercase tracking-widest text-cyan-400 mb-2">
+            01 / Professional Profile
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Bridging Raw Databases and <br className="hidden sm:inline" />
-            <span className="text-gradient-cyan">Executive Business Strategy.</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-heading">
+            Bridging Database Engineering and <br className="hidden sm:inline" />
+            <span className="text-slate-400">Strategic Decision-Making.</span>
           </h2>
-          <p className="mt-3 text-slate-400 text-base leading-relaxed">
-            A comprehensive overview of my analytical philosophy, background, and core focus areas.
+          <p className="mt-3 text-slate-300 text-base leading-relaxed max-w-2xl">
+            A background rooted in Information Technology engineering and professional analytics training, focused on turning raw tabular data into measurable business outcomes.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Narrative & Professional Bio */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <div className="prose prose-invert max-w-none space-y-4 text-slate-300 text-base leading-relaxed">
+          {/* Left Column: Narrative & Key Factsheet */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="space-y-4 text-slate-300 text-base sm:text-[17px] leading-relaxed">
               {profileData.aboutText.map((paragraph, idx) => (
-                <p key={idx} className="bg-navy-900/40 p-4 rounded-xl border border-slate-800/80">
+                <p key={idx} className="leading-relaxed">
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            {/* Quick Profile Factsheet */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
-              
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-navy-900/60 border border-slate-800">
-                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 mt-0.5">
-                  <GraduationCap className="w-4 h-4" />
+            {/* Structured Factsheet Ledger */}
+            <div className="pt-4 border-t border-slate-800/80">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+                Background Factsheet
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                
+                <div className="p-3.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                  <span className="text-slate-400 uppercase tracking-wider block font-mono text-[10px]">
+                    Degree & Academics
+                  </span>
+                  <p className="text-sm font-semibold text-white mt-1">
+                    B.Tech in Information Technology
+                  </p>
+                  <p className="text-slate-400 mt-0.5">
+                    SVCE Hyderabad (2021–2025) • CGPA: 7.87
+                  </p>
                 </div>
-                <div>
-                  <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">Education</span>
-                  <p className="text-sm font-semibold text-white mt-0.5">B.Tech in Information Technology</p>
-                  <p className="text-xs text-slate-400">SVCE Hyderabad (2021–2025) • CGPA: 7.87</p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-navy-900/60 border border-slate-800">
-                <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 mt-0.5">
-                  <Award className="w-4 h-4" />
+                <div className="p-3.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                  <span className="text-slate-400 uppercase tracking-wider block font-mono text-[10px]">
+                    Specialized Training
+                  </span>
+                  <p className="text-sm font-semibold text-white mt-1">
+                    FLM Analytics Program
+                  </p>
+                  <p className="text-slate-400 mt-0.5">
+                    Data Analyst Trainee (Jan 2025 – Jun 2025)
+                  </p>
                 </div>
-                <div>
-                  <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">Specialized Training</span>
-                  <p className="text-sm font-semibold text-white mt-0.5">FLM Analytics Program</p>
-                  <p className="text-xs text-slate-400">Data Analyst Trainee (Jan 2025 – Jun 2025)</p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-navy-900/60 border border-slate-800">
-                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
-                  <MapPin className="w-4 h-4" />
+                <div className="p-3.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                  <span className="text-slate-400 uppercase tracking-wider block font-mono text-[10px]">
+                    Location & Mobility
+                  </span>
+                  <p className="text-sm font-semibold text-white mt-1">
+                    Hyderabad, India
+                  </p>
+                  <p className="text-slate-400 mt-0.5">
+                    Open to Pune • Immediate availability
+                  </p>
                 </div>
-                <div>
-                  <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">Location & Mobility</span>
-                  <p className="text-sm font-semibold text-white mt-0.5">{profileData.location}</p>
-                  <p className="text-xs text-slate-400">Open to Pune, On-site & Hybrid roles</p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-navy-900/60 border border-slate-800">
-                <div className="p-2 rounded-lg bg-sky-500/10 text-sky-400 mt-0.5">
-                  <FileSpreadsheet className="w-4 h-4" />
+                <div className="p-3.5 rounded-lg bg-slate-900/50 border border-slate-800">
+                  <span className="text-slate-400 uppercase tracking-wider block font-mono text-[10px]">
+                    Core Analytical Stack
+                  </span>
+                  <p className="text-sm font-semibold text-white mt-1">
+                    Power BI, SQL, Python, Excel
+                  </p>
+                  <p className="text-slate-400 mt-0.5">
+                    PostgreSQL, MySQL, DAX, Pandas
+                  </p>
                 </div>
-                <div>
-                  <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">Technical Strengths</span>
-                  <p className="text-sm font-semibold text-white mt-0.5">Power BI, SQL, Python, Excel</p>
-                  <p className="text-xs text-slate-400">CTEs, DAX, Star Schema, Automation</p>
-                </div>
-              </div>
 
+              </div>
             </div>
           </div>
 
-          {/* Right Column: 3 Analytical Pillars */}
-          <div className="lg:col-span-5 space-y-4 text-left">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-2">
-              How I Deliver Value
+          {/* Right Column: 3 Architectural Delivery Stages */}
+          <div className="lg:col-span-5 space-y-6">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 pb-2 border-b border-slate-800/80">
+              Analytical Workflow Sequence
             </h3>
 
-            {pillars.map((pillar, index) => (
-              <div 
-                key={index}
-                className="group p-5 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-850 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 shadow-md hover:shadow-cyan-500/10"
-              >
-                <div className="flex items-center gap-3 mb-2.5">
-                  <div className="p-2.5 rounded-xl bg-navy-950 border border-slate-800 group-hover:border-cyan-500/40 transition-colors">
-                    {pillar.icon}
+            <div className="space-y-6">
+              {pillars.map((pillar) => (
+                <div 
+                  key={pillar.num}
+                  className="pl-5 border-l-2 border-slate-800 hover:border-cyan-400 transition-colors duration-200"
+                >
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-[11px] font-mono text-cyan-400 font-semibold">
+                      {pillar.num}
+                    </span>
+                    <h4 className="text-sm sm:text-base font-bold text-white tracking-tight font-heading">
+                      {pillar.title}
+                    </h4>
                   </div>
-                  <h4 className="text-base font-bold text-white tracking-wide">
-                    {pillar.title}
-                  </h4>
+                  <p className="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
+                    {pillar.description}
+                  </p>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed font-normal pl-1">
-                  {pillar.description}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
 
             {/* Quality Commitment Callout */}
-            <div className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/20 text-xs text-cyan-200 flex items-start gap-2.5">
-              <CheckCircle className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
-              <span>
-                <strong>Data Integrity First:</strong> Every metric and recommendation is backed by verifiable SQL transformations, null-auditing, and validation checks before reaching stakeholder reporting.
-              </span>
+            <div className="p-4 rounded-lg bg-slate-900/80 border border-slate-800 text-xs text-slate-300 flex items-start gap-3 mt-6">
+              <FileCheck className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+              <p className="leading-relaxed">
+                <strong className="text-white">Empirical Verification:</strong> Every metric and finding is validated against raw database logs, null audits, and window logic before entering executive reporting.
+              </p>
             </div>
 
           </div>
